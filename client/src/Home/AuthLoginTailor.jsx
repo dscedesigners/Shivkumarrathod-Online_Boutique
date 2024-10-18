@@ -11,10 +11,10 @@ const AuthLoginTailor = () => {
       }, []);
 
     return (
-        <div className="mt-[5rem] flex w-full justify-center gap-5">
-            <div className={`flex w-[35rem] border px-12 py-1 rounded-full gap-4 transition-all duration-500 transform ${
+        <div className="mt-[4rem] flex w-full justify-center gap-5">
+            <div className={`flex w-[35rem] border-b mt-5 border-orange-500 px-12 py-1 transition-all duration-500 transform ${
                 isVisible ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}>
-                <p>
+                <p className=''>
                     Looking to register as a tailor?  
                     <Link to="/tailorauth" className="text-blue-600 hover:font-bold ml-1">
                           Click here to get started!

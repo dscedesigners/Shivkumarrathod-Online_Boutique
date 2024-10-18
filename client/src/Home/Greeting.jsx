@@ -25,7 +25,7 @@ const Greeting = () => {
       greeting = 'Good Evening';
     }
   return (
-    <div className='flex justify-around  mt-2'>
+    <div className='flex justify-around bg-gray-100 mt-2'>
         <div className='w-[5%]  flex flex-col p-2 items-center justify-center cursor-pointer'>
           <FiInstagram className='p-1 m-2 hover:text-red-500' size={30}/>
           <FaGithub className='p-1 m-2 hover:text-red-500' size={30}/>
@@ -35,7 +35,7 @@ const Greeting = () => {
                 isVisible ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}>
             <h1 className='font-cursive font-semibold text-4xl mb-5 ml-[5rem] text-bold'>{greeting} <span className='text-orange-500'>Shivkumar !</span></h1> 
             <p className='w-[38rem] ml-20'>"Welcome to our exclusive online boutique, where style meets elegance. Discover a curated collection of fashionable apparel, accessories, and unique pieces tailored to your distinct taste. Explore limited-edition items and timeless designs, all available at the click of a button. Enjoy a seamless shopping experience with secure payments and fast delivery, bringing the latest trends right to your doorstep!"</p>
-            <Link to='/#' className='bg-orange-500 bg-opacity-10 border border-orange-500 hover:bg-opacity-100 rounded-full px-1 py-1 w-[10rem] text-center ml-[5rem] mt-2'>Find Tailor</Link>
+            <Link to='/#' className='bg-orange-500 bg-opacity-10 border border-orange-500 hover:bg-opacity-100 rounded-full px-1 py-1 w-[10rem] text-center ml-[5rem] mt-2 font-bold'>Find Tailor</Link>
         </div>
 
             {/* image */}

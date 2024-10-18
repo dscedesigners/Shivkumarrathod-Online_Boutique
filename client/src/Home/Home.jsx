@@ -6,9 +6,11 @@ const Home = () => {
 
   return (
     <>
-      <AuthLoginTailor/>
-      <Greeting/>
-      <Footter />
+      <div className="bg-gray-100">
+        <AuthLoginTailor/>
+        <Greeting/>
+        <Footter />
+      </div>
     </>
   );
 };
