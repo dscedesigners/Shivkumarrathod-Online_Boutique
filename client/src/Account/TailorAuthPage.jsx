@@ -58,16 +58,28 @@ const TailorAuth = () => {
                 />
               </div>
               <div>
-                <label className="block text-gray-700">Location</label>
-                <input
-                  type="text"
-                  name="location"
-                  value={formData.location}
-                  onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-indigo-200"
-                  placeholder="Enter your location"
-                />
-              </div>
+  <label className="block text-gray-700">State</label>
+  <select
+    name="state"
+    value={formData.state} // assuming `state` is a part of your `formData`
+    onChange={handleChange} // this is your form's change handler
+    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-indigo-200"
+  >
+    <option value="" disabled>
+      Select your state
+    </option>
+    <option value="Karnataka">Karnataka</option>
+    <option value="Maharashtra">Maharashtra</option>
+    <option value="Tamil Nadu">Tamil Nadu</option>
+    <option value="Uttar Pradesh">Uttar Pradesh</option>
+    <option value="Rajasthan">Rajasthan</option>
+    <option value="Kerala">Kerala</option>
+    <option value="Gujarat">Gujarat</option>
+    <option value="West Bengal">West Bengal</option>
+    <option value="Punjab">Punjab</option>
+    <option value="Bihar">Bihar</option>
+  </select>
+</div>
             </>
           )}
           <div>
