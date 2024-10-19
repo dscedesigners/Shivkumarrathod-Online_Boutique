@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Logo from '../Utiles/Logo.png';
 import { IoSearchSharp } from "react-icons/io5";
 import { IoMdNotifications } from "react-icons/io";
@@ -8,6 +8,7 @@ import { FaLocationDot } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
 
 const Nav = () => {
+
   return (
     <div className='h-[4rem] flex justify-around items-center border-b border-red-600 fixed top-0 w-full bg-white z-50 px-4 sm:px-8'>
       {/* LOGO, location and search box */}
