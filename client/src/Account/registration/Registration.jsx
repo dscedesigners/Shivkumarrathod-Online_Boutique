@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSpring, animated } from 'react-spring';
 import { Scissors } from 'lucide-react';
-import PersonalInfo from './registration/PersonalInfo';
-import LocationInfo from './registration/LocationInfo';
-import ServicesInfo from './registration/ServicesInfo';
+import PersonalInfo from './PersonalInfo';
+import LocationInfo from './LocationInfo';
+import ServicesInfo from './ServicesInfo';
 
 const Registration = () => {
   const [step, setStep] = useState(1);

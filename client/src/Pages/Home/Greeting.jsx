@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import lpi from '../Utiles/lpi.jpg';
+import lpi from '../../Utiles/lpi.jpg' 
+
 import { FiInstagram } from "react-icons/fi";
 import { FaGithub } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";

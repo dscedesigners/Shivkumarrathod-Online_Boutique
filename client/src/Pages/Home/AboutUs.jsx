@@ -1,5 +1,5 @@
 import React from 'react';
-import Logo from '../Utiles/Logo.png'; // Replace with your image path
+import Logo from '../../Utiles/Logo.png' // Replace with your image path
 
 const AboutUs = () => {
   return (
