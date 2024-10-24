@@ -5,6 +5,7 @@ import { Scissors } from 'lucide-react';
 import PersonalInfo from './PersonalInfo';
 import LocationInfo from './LocationInfo';
 import ServicesInfo from './ServicesInfo';
+import TailorReg from '../../Utiles/RegBgImg.jpg';
 
 const Registration = () => {
   const [step, setStep] = useState(1);
@@ -31,8 +32,12 @@ const Registration = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center px-4">
-      <div className="bg-white rounded-xl shadow-2xl p-8 w-full max-w-4xl animate-fade-in">
+    <div 
+      className="min-h-screen relative flex items-center justify-center px-4 bg-cover bg-center" 
+      style={{ backgroundImage: `url(${TailorReg})` }}
+    >
+      <div className="absolute inset-0 bg-black bg-opacity-30 backdrop-blur-md inset-y-0" />
+      <div className="bg-white rounded-xl shadow-2xl p-8 w-full max-w-4xl relative z-10">
         <div className="flex items-center justify-center mb-8">
           <Scissors className="text-blue-600 w-12 h-12 mr-4" />
           <h1 className="text-3xl font-bold text-blue-800">Tailor Registration</h1>
@@ -44,12 +49,7 @@ const Registration = () => {
           </div>
           <div className="flex justify-between relative z-10">
             {[1, 2, 3].map((i) => (
-              <div
-                key={i}
-                className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                  i <= step ? 'bg-blue-600 text-white' : 'bg-gray-300 text-gray-600'
-                } transition-all duration-300`}
-              >
+              <div key={i} className={`w-10 h-10 rounded-full flex items-center justify-center ${i <= step ? 'bg-blue-600 text-white' : 'bg-gray-300 text-gray-600'} transition-all duration-300`}>
                 {i}
               </div>
             ))}

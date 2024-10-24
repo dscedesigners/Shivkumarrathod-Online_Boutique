@@ -13,9 +13,9 @@ const CompletedOrders = () => {
 
   return (
     <div className="flex h-screen bg-gray-100">
-      <Sidebar isOpen={sidebarOpen} toggleSidebar={() => setSidebarOpen(!sidebarOpen)} />
+      <Sidebar/>
 
-      <div className="flex-1 flex flex-col overflow-hidden">
+      <div className="flex-1 flex flex-col overflow-hidden ml-64">
         <header className="bg-white shadow-sm z-10">
           <div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
             <h1 className="text-2xl font-semibold text-gray-900">Completed Orders</h1>
