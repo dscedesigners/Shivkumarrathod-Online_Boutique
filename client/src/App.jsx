@@ -4,7 +4,6 @@ import Home from "./Pages/Home/Home";
 import AuthPage from "./Account/AuthPage"
 import AuthLoginTailor from './Pages/Home/AuthLoginTailor';
 import Registration from './Account/registration/Registration';
-// import Registration from './Account/registration/PersonalInfo';
 import Dashboard from './Pages/TailorInterface/Dashboard';
 import PendingOrders from './Pages/TailorInterface/PendingOrders';
 import CompletedOrders from './Pages/TailorInterface/CompletedOrders';
