@@ -62,12 +62,12 @@ const EditProfile = () => {
               <form className="space-y-6">
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                   <div>
-                    <label htmlFor="full-name" className="block text-sm font-medium text-gray-700">
+                    <label htmlFor="full-name" className="block text-sm font-medium text-gray-700 pl-2">
                       Full Name
                     </label>
                     <div className="mt-1 relative rounded-md shadow-sm">
                       <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <User className="h-5 w-5 text-gray-400" />
+                        <User  className="h-5 w-5 text-gray-400  " />
                       </div>
                       <input
                         type="text"
