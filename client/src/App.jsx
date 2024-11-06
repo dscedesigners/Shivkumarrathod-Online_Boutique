@@ -11,10 +11,13 @@ import CancelledOrders from './Pages/TailorInterface/CancelledOrders';
 import ServicesCustomization from './Pages/TailorInterface/ServicesCustomization';
 import FAQs from './Pages/TailorInterface/FAQs';
 import EditProfile from './Pages/TailorInterface/EditProfile';
+import ProductList from './Pages/Products/Product';
+import Nav from './Components/Nav';
 
 function App() {
   return (
     <>
+     <Nav/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/account" element={<AuthPage />} />
@@ -27,6 +30,7 @@ function App() {
         <Route path="/services-customization" element={<ServicesCustomization />} />
         <Route path="/faqs" element={<FAQs />} />
         <Route path="/edit-profile" element={<EditProfile />} />
+        <Route path="/products" element={<ProductList />} />
       </Routes>
     </>
   );
