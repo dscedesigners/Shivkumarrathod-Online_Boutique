@@ -52,8 +52,10 @@ const Nav = () => {
           <FaSearch className="text-gray-600 ml-2" />
         </div>
 
-        {/* Shopping Cart */}
-        <FaShoppingCart className="text-2xl text-gray-800" />
+        {/* Shopping Cart Link */}
+        <Link to="/cart">
+          <FaShoppingCart className="text-2xl text-gray-800" />
+        </Link>
 
         {/* Login Button */}
         <button className="px-4 py-1 rounded-full bg-blue-800 text-white font-semibold hover:bg-blue-900">
