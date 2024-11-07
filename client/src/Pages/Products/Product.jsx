@@ -3,7 +3,7 @@ import { FaBars, FaTimes } from "react-icons/fa"; // Import icons from react-ico
 import image1 from "../../Utiles/TailorReg.jpg";
 import image2 from "../../Utiles/RegBgImg.jpg";
 import { FiShoppingCart } from "react-icons/fi";
-import Nav from "../../components/Nav"; // Import Navbar
+import Nav from "../../Components/Nav"; // Import Navbar
 
 const products = [
   {
