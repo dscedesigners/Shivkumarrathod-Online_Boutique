@@ -4,7 +4,6 @@ import Home from "./Pages/Home/Home";
 import AuthPage from "./Account/AuthPage"
 import AuthLoginTailor from './Pages/Home/AuthLoginTailor';
 import Registration from './Account/registration/Registration';
-// import Registration from './Account/registration/PersonalInfo';
 import Dashboard from './Pages/TailorInterface/Dashboard';
 import PendingOrders from './Pages/TailorInterface/PendingOrders';
 import CompletedOrders from './Pages/TailorInterface/CompletedOrders';
@@ -12,6 +11,8 @@ import CancelledOrders from './Pages/TailorInterface/CancelledOrders';
 import ServicesCustomization from './Pages/TailorInterface/ServicesCustomization';
 import FAQs from './Pages/TailorInterface/FAQs';
 import EditProfile from './Pages/TailorInterface/EditProfile';
+import ProductList from './Pages/Products/Product';
+import Nav from './Components/Nav';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/services-customization" element={<ServicesCustomization />} />
         <Route path="/faqs" element={<FAQs />} />
         <Route path="/edit-profile" element={<EditProfile />} />
+        <Route path="/products" element={<ProductList />} />
       </Routes>
     </>
   );

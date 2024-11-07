@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { FaSearch, FaShoppingCart } from "react-icons/fa";
-import { Link } from "react-router-dom"; // Importing Link for routing
+import { Link } from "react-router-dom"; // Import Link for routing
 
-const Nav= () => {
+const Nav = () => {
   const [active, setActive] = useState("Home");
 
   return (
@@ -26,18 +26,18 @@ const Nav= () => {
                 : "text-blue-800"
             }`}
           >
-            <a
-              href={`#${item.toLowerCase()}`}
+            <Link
+              to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
               onClick={() => setActive(item)}
               className="pb-2 transition-all"
             >
               {item}
-            </a>
+            </Link>
           </li>
         ))}
       </ul>
 
-      {/* Search, Cart, Get Started Button, and Login Link */}
+      {/* Search, Cart, and Login */}
       <div className="flex items-center space-x-6">
         {/* Search Box */}
         <div className="flex items-center border-b border-gray-700">
@@ -52,16 +52,10 @@ const Nav= () => {
         {/* Shopping Cart */}
         <FaShoppingCart className="text-2xl text-gray-800" />
 
-        {/* Get Started Button */}
+        {/* Login Button */}
         <button className="px-4 py-1 rounded-full bg-blue-800 text-white font-semibold hover:bg-blue-900">
-         <Link
-          to="/account">
-          Login
-        </Link>
+          <Link to="/account">Login</Link>
         </button>
-
-        {/* Login Link */}
-        
       </div>
     </nav>
   );
