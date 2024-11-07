@@ -1,23 +1,24 @@
 import React from 'react';
 import Nav from "../../Components/Nav";
 import Footter from '../../Components/Footter';
-import Greeting from './Greeting';
-import AuthLoginTailor from './AuthLoginTailor';
-import AboutUs from './AboutUs';
+import Showcase from './Showcase';
+import Products from './Products';
+import Services from './Services';
+import Poster from './Poster';
+import WhatWeDo from './WhatWeDo';
 
-const Home = () => {
-
+function Home() {
   return (
-    <>
-      <div className="bg-gray-100">
-        <Nav />
-        <AuthLoginTailor/>
-        <Greeting/>
-        <AboutUs/>
-        <Footter />
-      </div>
-    </>
+    <div className="bg-gradient-to-b from-blue-100 to-blue-50">
+      <Nav />
+      <Showcase />
+      <Products />
+      <Services />
+      <Poster />
+      <WhatWeDo />
+      <Footter />
+    </div>
   );
-};
+}
 
 export default Home;

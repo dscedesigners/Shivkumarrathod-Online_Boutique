@@ -1,53 +1,69 @@
-import React, { useEffect, useState } from 'react';
-import Logo from '../Utiles/Logo.png';
-import { IoSearchSharp } from "react-icons/io5";
-import { IoMdNotifications } from "react-icons/io";
-import { FaUser } from "react-icons/fa6";
-import { RiArrowDropDownLine } from "react-icons/ri";
-import { FaLocationDot } from "react-icons/fa6";
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { FaSearch, FaShoppingCart } from "react-icons/fa";
+import { Link } from "react-router-dom"; // Importing Link for routing
 
-const Nav = () => {
+const Nav= () => {
+  const [active, setActive] = useState("Home");
 
   return (
-    <div className='h-[4rem] flex justify-around items-center border-b border-red-600 fixed top-0 w-full bg-white z-50 px-4 sm:px-8'>
-      {/* LOGO, location and search box */}
-      <div className='flex justify-center items-center gap-3 md:gap-5'>
-        <img src={Logo} alt="logo" className='w-[4rem] md:w-[5rem]' />
+    <nav className="flex justify-between items-center py-4 px-8 bg-[linear-gradient(114.91deg,_#BEE2EF_7.73%,_#73C1DE_103.62%)] text-white w-full border-b border-white">
+      {/* Logo Section */}
+      <div className="flex items-center space-x-2 text-2xl font-bold text-blue-800">
+        <span className="rounded-full p-2 bg-white">
+          <img src="path/to/logo.png" alt="logo" className="h-8 w-8" />
+        </span>
+        <span>StarFashion</span>
+      </div>
 
-        {/* Location */}
-        <div className='hidden md:flex items-center px-2 py-1 border border-gray-500 rounded-full hover:bg-orange-500 border-orange-500 cursor-pointer'>
-          <FaLocationDot size={20} />
-          <span className='ml-1'>Location</span>
-        </div>
+      {/* Navigation Links */}
+      <ul className="flex space-x-8 text-lg">
+        {["Home", "Products", "Contact"].map((item) => (
+          <li
+            key={item}
+            className={`hover:text-blue-900 ${
+              active === item
+                ? "text-blue-900 border-b-2 border-blue-900 font-semibold"
+                : "text-blue-800"
+            }`}
+          >
+            <a
+              href={`#${item.toLowerCase()}`}
+              onClick={() => setActive(item)}
+              className="pb-2 transition-all"
+            >
+              {item}
+            </a>
+          </li>
+        ))}
+      </ul>
 
-        {/* Search box */}
-        <div className="relative w-full max-w-xs md:max-w-sm lg:max-w-lg hidden sm:block">
+      {/* Search, Cart, Get Started Button, and Login Link */}
+      <div className="flex items-center space-x-6">
+        {/* Search Box */}
+        <div className="flex items-center border-b border-gray-700">
           <input
             type="text"
-            placeholder="Search..."
-            className="w-[30rem] sm:w-[20rem] py-1.5 pl-10 pr-4 border border-orange-300 rounded-full focus:outline-none"
+            placeholder="Search"
+            className="outline-none bg-transparent placeholder-gray-700"
           />
-          <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-orange-400">
-            <IoSearchSharp size={25} />
-          </span>
+          <FaSearch className="text-gray-600 ml-2" />
         </div>
-      </div>
 
-      {/* Notification and login box */}
-      <div className='flex gap-3 sm:gap-4 items-center'>
-        {/* Notification icon */}
-        <div><IoMdNotifications size={28} className='hover:text-orange-600 cursor-pointer' /></div>
+        {/* Shopping Cart */}
+        <FaShoppingCart className="text-2xl text-gray-800" />
 
-        {/* Login button */}
-        <Link to='/account' className='w-[7rem] md:w-[8rem] flex items-center border border-gray-500 px-2 py-1 rounded-full cursor-pointer hover:bg-orange-500 border-orange-500'>
-          <FaUser size={20} />
-          <span className='ml-1 font-semibold hidden md:flex'>
-            Login <RiArrowDropDownLine size={24} />
-          </span>
+        {/* Get Started Button */}
+        <button className="px-4 py-1 rounded-full bg-blue-800 text-white font-semibold hover:bg-blue-900">
+         <Link
+          to="/account">
+          Login
         </Link>
+        </button>
+
+        {/* Login Link */}
+        
       </div>
-    </div>
+    </nav>
   );
 };
 
