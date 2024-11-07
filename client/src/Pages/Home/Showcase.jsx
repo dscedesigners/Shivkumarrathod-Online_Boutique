@@ -1,9 +1,14 @@
 import React from 'react';
 import { FaCheckCircle } from 'react-icons/fa';
+import { Link } from 'react-router-dom'; // Import Link for navigation
 import person1 from '../../utiles/person1.jpg'; 
 import person2 from '../../utiles/person1.jpg';
 
 const Showcase = () => {
+  const handleScrollToTop = () => {
+    window.scrollTo(0, 0); // Scroll to the top of the page
+  };
+
   return (
     <div className="bg-[linear-gradient(114.91deg,_#BEE2EF_7.73%,_#73C1DE_103.62%)] text-white p-8" style={{ height: '750px' }}>
       <div className="container mx-auto px-10 flex justify-between items-start space-x-10">
@@ -34,9 +39,12 @@ const Showcase = () => {
             <strong>StarFashion</strong> is a platform that helps to make fashion <br />
             accessible to all & brings fashion to your doorstep!
           </p>
-          <button className="mt-6 px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition duration-300">
-            Shop collections
-          </button>
+          {/* Link component for navigation with scroll to top */}
+          <Link to="/products" onClick={handleScrollToTop}>
+            <button className="mt-6 px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition duration-300">
+              Shop collections
+            </button>
+          </Link>
         </div>
 
         {/* Images Section */}

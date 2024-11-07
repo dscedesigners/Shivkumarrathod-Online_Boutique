@@ -4,6 +4,7 @@ import image1 from "../../Utiles/TailorReg.jpg";
 import image2 from "../../Utiles/RegBgImg.jpg";
 import { FiShoppingCart } from "react-icons/fi";
 import Nav from "../../Components/Nav"; // Import Navbar
+import Footer from "../../Components/Footter"
 
 const products = [
   {
@@ -30,6 +31,80 @@ const products = [
     imageUrl: image2,
     description: "A comfortable kids' t-shirt.",
   },
+  {
+    id: 3,
+    name: "Tailored Suit",
+    price: 120,
+    gender: "Men",
+    category: "Formal",
+    brand: "Brand A",
+    size: "M",
+    color: "Black",
+    imageUrl: image1,
+    description: "A custom-made elegant suit.",
+  },
+  {
+    id: 4,
+    name: "Tailored Suit",
+    price: 120,
+    gender: "Men",
+    category: "Formal",
+    brand: "Brand A",
+    size: "M",
+    color: "Black",
+    imageUrl: image1,
+    description: "A custom-made elegant suit.",
+  },
+  {
+    id: 5,
+    name: "Tailored Suit",
+    price: 120,
+    gender: "Men",
+    category: "Formal",
+    brand: "Brand A",
+    size: "M",
+    color: "Black",
+    imageUrl: image1,
+    description: "A custom-made elegant suit.",
+  },
+  {
+    id: 6,
+    name: "Tailored Suit",
+    price: 120,
+    gender: "Men",
+    category: "Formal",
+    brand: "Brand A",
+    size: "M",
+    color: "Black",
+    imageUrl: image1,
+    description: "A custom-made elegant suit.",
+  },
+
+  {
+    id: 7,
+    name: "Tailored Suit",
+    price: 120,
+    gender: "Men",
+    category: "Formal",
+    brand: "Brand A",
+    size: "M",
+    color: "Black",
+    imageUrl: image1,
+    description: "A custom-made elegant suit.",
+  },
+
+  {
+    id: 8,
+    name: "Tailored Suit",
+    price: 120,
+    gender: "Men",
+    category: "Formal",
+    brand: "Brand A",
+    size: "M",
+    color: "Black",
+    imageUrl: image1,
+    description: "A custom-made elegant suit.",
+  }
   // Add more products as needed
 ];
 
@@ -46,14 +121,15 @@ const ProductList = () => {
   };
 
   return (
-    <div className="container mx-auto px-4">
+    <div className="flex flex-col min-h-screen">
       <Nav /> {/* Navbar added here */}
+
       <h1 className="text-center mt-5 font-bold text-2xl md:text-3xl tracking-[5px]">
         Products
       </h1>
 
       <div className="flex justify-between items-center mt-4">
-        <h2 className="font-semibold text-[#24107D] text-xl md:text-2xl">
+        <h2 className="font-semibold text-[#24107D] text-xl ml-5 md:text-2xl">
           Filters
         </h2>
         <div className="flex items-center text-[#1D55C1] font-semibold rounded-full border-2 border-[#73C1DE] px-3 cursor-pointer">
@@ -199,7 +275,7 @@ const ProductList = () => {
               <h3 className="text-sm font-semibold">{product.name}</h3>
               <p className="text-xs text-gray-500 mb-2">{product.description}</p>
               <div className="flex justify-around items-center w-full mt-2">
-                <p className="font-semibold">Rs. {product.price}</p>
+                <p className="font-semibold">$ {product.price}</p>
                 <button className="bg-[#2518BD] text-white p-2 rounded-full">
                   <FiShoppingCart size={20} />
                 </button>
@@ -208,6 +284,8 @@ const ProductList = () => {
           ))}
         </main>
       </div>
+
+      <Footer /> {/* Footer added here */}
     </div>
   );
 };

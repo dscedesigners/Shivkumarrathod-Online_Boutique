@@ -4,8 +4,8 @@ import React from 'react';
 
 function WhatWeDo() {
   return (
-    <section className="p-10 bg-white mx-4 rounded-lg">
-      <h2 className="text-3xl font-bold text-center text-blue-900 mb-8">What We Do</h2>
+    <section className="p-10 bg-white mx-4 rounded-lg mb-20">
+      <h2 className="text-3xl font-bold text-center text-black mb-8">What We Do</h2>
       
       {/* Unified container with one box */}
       <div className="bg-[linear-gradient(94.1deg,_#F4F4F4_-39.59%,_#91DEFB_99.19%)] p-6 rounded-lg shadow-lg">

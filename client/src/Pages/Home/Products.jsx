@@ -38,7 +38,7 @@ function Products() {
 
   return (
     <section id="products" className="p-16 bg-blue-50" style={{ height: '600px' }}>
-      <h2 className="text-4xl font-bold text-center text-blue-900 mb-8">Men's Collection</h2>
+      <h2 className="text-4xl font-bold text-center text-black mb-8">Men's Collection</h2>
 
       <div className="relative mt-8"> {/* Added mt-8 to move the image container down */}
         {/* Left Arrow */}

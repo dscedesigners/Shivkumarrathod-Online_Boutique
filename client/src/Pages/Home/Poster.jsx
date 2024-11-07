@@ -1,9 +1,13 @@
-// src/components/Poster.jsx
-
 import React from 'react';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import person1 from '../../utiles/person1.jpg'; // Import the image
+import ProductList from '../Products/Product';
 
 function Poster() {
+  const handleScrollToTop = () => {
+    window.scrollTo(0, 0); // Scroll to the top of the page
+  };
+
   return (
     <div className="flex items-center justify-between bg-blue-800 text-white p-8 mx-4 mt-20 mb-20">
       <div className="flex items-center">
@@ -27,7 +31,10 @@ function Poster() {
       <div className="text-right mr-20">
         <h3 className="text-3xl font-semibold mb-2">Find your Style!</h3>
         <p className="text-lg mb-4">Thousands style more!</p>
-        <button className="bg-white text-blue-800 px-4 py-2 rounded-full">Shop Collections</button>
+        {/* Link with onClick to handle scroll to top */}
+        <Link to="/products" onClick={handleScrollToTop}>
+          <button className="bg-white text-blue-800 px-4 py-2 rounded-full">Shop Collections</button>
+        </Link>
       </div>
     </div>
   );

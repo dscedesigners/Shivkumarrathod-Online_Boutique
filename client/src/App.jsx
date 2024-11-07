@@ -12,7 +12,6 @@ import ServicesCustomization from './Pages/TailorInterface/ServicesCustomization
 import FAQs from './Pages/TailorInterface/FAQs';
 import EditProfile from './Pages/TailorInterface/EditProfile';
 import ProductList from './Pages/Products/Product';
-import Nav from './Components/Nav';
 
 function App() {
   return (

@@ -13,7 +13,7 @@ function Services() {
 
   return (
     <section className="p-10 bg-gradient-to-b from-white to-blue-200 w-full">
-      <h2 className="text-3xl font-bold text-center text-blue-900 mb-8">Services</h2>
+      <h2 className="text-3xl font-bold text-center text-black mb-8">Services</h2>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
         {images.map((image, index) => (
           <div key={index} className="relative mb-8">
