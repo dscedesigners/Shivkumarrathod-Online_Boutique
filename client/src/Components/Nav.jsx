@@ -1,53 +1,65 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { FaSearch, FaShoppingCart } from "react-icons/fa";
+import { Link, useLocation } from "react-router-dom"; // Import useLocation for getting the current path
+import person1 from '../Utiles/AuthImage.jpg';
 
 const Nav = () => {
+  const location = useLocation(); // Get the current path
+
+  // Function to determine if a link is active
+  const isActive = (path) => location.pathname === path;
+
   return (
-    <nav className="flex items-center justify-between px-6 py-4 bg-gray-900 text-white border-b border-white shadow-md">
-      {/* Logo */}
-      <div className="text-2xl font-bold">
-        <Link to="/">LOGO</Link>
+    <nav className="flex justify-between items-center py-4 px-8 bg-white text-gray-800 w-full border-b border-gray-200">
+      {/* Logo Section */}
+      <div className="flex items-center space-x-2 text-2xl font-bold text-blue-800">
+        <span className="rounded-full p-2 bg-white">
+          <img src={person1} alt="logo" className="h-8 w-8 rounded-full" />
+        </span>
+        <span>StarFashion</span>
       </div>
 
       {/* Navigation Links */}
-      <div className="hidden md:flex space-x-8">
-        <Link to="/" className="hover:text-gray-400">Home</Link>
-        <Link to="/products" className="hover:text-gray-400">Products</Link>
-        <Link to="/contact" className="hover:text-gray-400">Contact</Link>
-      </div>
+      <ul className="flex space-x-8 text-lg">
+        {["Home", "Products", "Contact"].map((item) => (
+          <li
+            key={item}
+            className={`hover:text-blue-900 ${
+              isActive(item === "Home" ? "/" : `/${item.toLowerCase()}`)
+                ? "text-blue-900 border-b-2 border-blue-900 font-semibold"
+                : "text-blue-800"
+            }`}
+          >
+            <Link
+              to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+              className="pb-2 transition-all"
+            >
+              {item}
+            </Link>
+          </li>
+        ))}
+      </ul>
 
-      {/* Icons and Button */}
+      {/* Search, Cart, and Login */}
       <div className="flex items-center space-x-6">
-        {/* Search */}
-        <div className="flex items-center space-x-1 hover:text-gray-400 cursor-pointer">
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M11 19a8 8 0 100-16 8 8 0 000 16zM21 21l-4.35-4.35"></path>
-          </svg>
-          <span>Search</span>
+        {/* Search Box */}
+        <div className="flex items-center border-b border-gray-700">
+          <input
+            type="text"
+            placeholder="Search"
+            className="outline-none bg-transparent placeholder-gray-700"
+          />
+          <FaSearch className="text-gray-600 ml-2" />
         </div>
 
-        {/* Cart */}
-        <div className="flex items-center space-x-1 hover:text-gray-400 cursor-pointer">
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4m-.9 8l-1.5 6h13M6 16h.01M10 16h.01"></path>
-          </svg>
-          <span>Cart</span>
-        </div>
-
-        {/* Get Started Button */}
-        <Link to="/account">
-          <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
-            Get Started
-          </button>
+        {/* Shopping Cart Link */}
+        <Link to="/cart">
+          <FaShoppingCart className="text-2xl text-gray-800" />
         </Link>
-      </div>
 
-      {/* Mobile Menu */}
-      <div className="md:hidden flex items-center">
-        <button className="text-white">
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
+        {/* Login Button */}
+        <button className="px-4 py-1 rounded-full bg-blue-800 text-white font-semibold hover:bg-blue-900">
+          <Link to="/account">Login</Link>
         </button>
       </div>
     </nav>
