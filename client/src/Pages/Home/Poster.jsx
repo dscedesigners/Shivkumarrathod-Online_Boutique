@@ -9,7 +9,7 @@ function Poster() {
   };
 
   return (
-    <div className="flex items-center justify-between bg-blue-800 text-white p-8 mx-4 mt-20 mb-20">
+    <div className="flex items-center justify-between rounded-xl bg-blue-800 text-white p-8 mx-4 mt-20 mb-20">
       <div className="flex items-center">
         <img
           src={person1} // Use the imported image

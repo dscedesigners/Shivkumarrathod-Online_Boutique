@@ -3,6 +3,7 @@ import { FaCheckCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom'; // Import Link for navigation
 import person1 from '../../utiles/person1.jpg'; 
 import person2 from '../../utiles/person1.jpg';
+import person3 from '../../utiles/person1.jpg'; // Add the third image (you can use a different image)
 
 const Showcase = () => {
   const handleScrollToTop = () => {
@@ -11,7 +12,7 @@ const Showcase = () => {
 
   return (
     <div className="bg-[linear-gradient(114.91deg,_#BEE2EF_7.73%,_#73C1DE_103.62%)] text-white p-8" style={{ height: '750px' }}>
-      <div className="container mx-auto px-10 flex justify-between items-start space-x-10">
+      <div className="container mx-auto px-10 flex justify-between items-start space-x-10 relative">
         
         {/* Text Section */}
         <div className="max-w-xl space-y-6">
@@ -82,6 +83,38 @@ const Showcase = () => {
               alt="Fashion 2"
               className="w-full h-full object-cover"
             />
+          </div>
+        </div>
+      </div>
+
+      {/* Glass Effect Box Overlapping the Large Image */}
+      <div className="absolute top-[calc(100%-150px)] right-0 flex justify-center items-center w-[50%] z-10">
+        <div className="p-4 bg-white/20 backdrop-blur-lg rounded-lg w-full max-w-[350px]">
+          <div className="flex justify-between gap-4">
+            {/* Small Image 1 */}
+            <div className="flex justify-center items-center">
+              <img
+                src={person1}
+                alt="Fashion 1"
+                className="w-16 h-16 object-cover rounded-lg shadow-lg"
+              />
+            </div>
+            {/* Small Image 2 */}
+            <div className="flex justify-center items-center">
+              <img
+                src={person2}
+                alt="Fashion 2"
+                className="w-16 h-16 object-cover rounded-lg shadow-lg"
+              />
+            </div>
+            {/* Small Image 3 */}
+            <div className="flex justify-center items-center">
+              <img
+                src={person3}
+                alt="Fashion 3"
+                className="w-16 h-16 object-cover rounded-lg shadow-lg"
+              />
+            </div>
           </div>
         </div>
       </div>

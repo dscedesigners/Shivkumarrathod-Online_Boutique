@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
-import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'; // Importing arrow icons
-import product1 from '../../utiles/person1.jpg'; 
-import product2 from '../../utiles/person2.jpg'; 
-import product3 from '../../utiles/person1.jpg'; 
-import product4 from '../../utiles/person2.jpg'; 
-import product5 from '../../utiles/person1.jpg'; 
-import product6 from '../../utiles/person2.jpg'; 
+import React, { useState, useEffect } from 'react';
+import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'; // Arrow icons
+
+// Sample products (replace with your actual image paths)
+import product1 from '../../utiles/person1.jpg';
+import product2 from '../../utiles/person2.jpg';
+import product3 from '../../utiles/person1.jpg';
+import product4 from '../../utiles/person2.jpg';
+import product5 from '../../utiles/person1.jpg';
+import product6 from '../../utiles/person2.jpg';
 
 const products = [
   { id: 1, image: product1 },
@@ -17,19 +19,35 @@ const products = [
 ];
 
 function Products() {
-  const [currentIndex, setCurrentIndex] = useState(2);  // Start with the middle image
+  const [currentIndex, setCurrentIndex] = useState(2); // Start in the middle image
+  const [isAutoSliding, setIsAutoSliding] = useState(true); // Track auto-sliding state
 
+  // Auto-slide effect
+  useEffect(() => {
+    if (!isAutoSliding) return;
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % products.length); // Move to next image
+    }, 5000); // Change every 5 seconds
+
+    return () => clearInterval(interval); // Clear interval on component unmount
+  }, [isAutoSliding]);
+
+  // Go to next image
   const goToNext = () => {
+    setIsAutoSliding(false); // Stop auto-sliding
     setCurrentIndex((prevIndex) => (prevIndex + 1) % products.length);
   };
 
+  // Go to previous image
   const goToPrev = () => {
+    setIsAutoSliding(false); // Stop auto-sliding
     setCurrentIndex(
       (prevIndex) => (prevIndex - 1 + products.length) % products.length
     );
   };
 
-  // Create an array of 3 visible images, centered around the current image
+  // Create visible images (prev, current, next)
   const visibleImages = [
     products[(currentIndex - 1 + products.length) % products.length],
     products[currentIndex],
@@ -37,12 +55,12 @@ function Products() {
   ];
 
   return (
-    <section id="products" className="p-16 bg-blue-50" style={{ height: '600px' }}>
+    <section id="products" className="p-16 bg-blue-50">
       <h2 className="text-4xl font-bold text-center text-black mb-8">Men's Collection</h2>
 
-      <div className="relative mt-8"> {/* Added mt-8 to move the image container down */}
+      <div className="relative mt-8">
         {/* Left Arrow */}
-        <button 
+        <button
           className="absolute left-4 top-1/2 transform -translate-y-1/2 text-4xl text-black opacity-80 hover:opacity-100 transition-all duration-300 ease-in-out"
           onClick={goToPrev}
         >
@@ -52,22 +70,25 @@ function Products() {
         {/* Image Container */}
         <div className="flex items-center justify-center space-x-12 overflow-hidden">
           {visibleImages.map((product, index) => {
-            let widthClass = "w-72";  // Default width for side images
-            let scaleClass = "scale-90";  // Default scale for side images
-            let borderRadiusClass = "rounded-lg";  // Apply rounded corners to all images
+            let widthClass = 'w-72'; // Default width for side images
+            let scaleClass = 'scale-90'; // Default scale for side images
+            let borderRadiusClass = 'rounded-lg'; // Default border radius for side images
 
             if (index === 1) {
-              // The middle image (larger with rounded corners)
-              widthClass = "w-96";  // Larger width for the middle image
-              scaleClass = "scale-110";  // Larger scale for the middle image
+              widthClass = 'w-96'; // Middle image is larger
+              scaleClass = 'scale'; // Middle image is scaled up
+              borderRadiusClass = 'rounded-xl'; // Apply 15px border radius to middle image
             }
 
             return (
-              <div key={product.id} className={`transition-all duration-500 ease-in-out ${widthClass} ${scaleClass}`}>
-                <img 
-                  src={product.image} 
-                  alt={`Product ${product.id}`} 
-                  className={`w-full h-96 object-cover ${borderRadiusClass} shadow-lg`}  // Increased height for the images
+              <div
+                key={product.id}
+                className={`transition-all transform duration-300 ease-in-out ${widthClass} ${scaleClass}`}
+              >
+                <img
+                  src={product.image}
+                  alt={`Product ${product.id}`}
+                  className={`w-full h-96 object-cover ${borderRadiusClass} shadow-lg`}
                 />
               </div>
             );
@@ -75,7 +96,7 @@ function Products() {
         </div>
 
         {/* Right Arrow */}
-        <button 
+        <button
           className="absolute right-4 top-1/2 transform -translate-y-1/2 text-4xl text-black opacity-80 hover:opacity-100 transition-all duration-300 ease-in-out"
           onClick={goToNext}
         >

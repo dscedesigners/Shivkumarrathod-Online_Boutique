@@ -11,10 +11,17 @@ const ProductFilters = ({ isSidebarOpen, toggleSidebar, priceRange, handlePriceC
       <div className="mb-4">
         <h3 className="font-medium">Category</h3>
         <ul className="ml-4 space-y-2">
-          <li><label><input type="checkbox" className="mr-2" /> Formal Wear</label></li>
-          <li><label><input type="checkbox" className="mr-2" /> Casual Wear</label></li>
-          <li><label><input type="checkbox" className="mr-2" /> Sportswear</label></li>
-          <li><label><input type="checkbox" className="mr-2" /> Accessories</label></li>
+          {["Formal Wear", "Casual Wear", "Sportswear", "Accessories"].map((category) => (
+            <li key={category}>
+              <label className="flex items-center space-x-2">
+                <input
+                  type="checkbox"
+                  className="form-checkbox h-5 w-5 text-blue-600 border-blue-600 rounded transition duration-200"
+                />
+                <span>{category}</span>
+              </label>
+            </li>
+          ))}
         </ul>
       </div>
 
@@ -36,9 +43,17 @@ const ProductFilters = ({ isSidebarOpen, toggleSidebar, priceRange, handlePriceC
       <div className="mb-4">
         <h3 className="font-medium">Brand</h3>
         <ul className="space-y-2">
-          <li><label><input type="checkbox" className="mr-2" /> Brand A</label></li>
-          <li><label><input type="checkbox" className="mr-2" /> Brand B</label></li>
-          <li><label><input type="checkbox" className="mr-2" /> Brand C</label></li>
+          {["Brand A", "Brand B", "Brand C"].map((brand) => (
+            <li key={brand}>
+              <label className="flex items-center space-x-2">
+                <input
+                  type="checkbox"
+                  className="form-checkbox h-5 w-5 text-blue-600 border-blue-600 rounded transition duration-200"
+                />
+                <span>{brand}</span>
+              </label>
+            </li>
+          ))}
         </ul>
       </div>
 
@@ -46,9 +61,17 @@ const ProductFilters = ({ isSidebarOpen, toggleSidebar, priceRange, handlePriceC
       <div className="mb-4">
         <h3 className="font-medium">Size</h3>
         <ul className="space-y-2">
-          <li><label><input type="checkbox" className="mr-2" /> S</label></li>
-          <li><label><input type="checkbox" className="mr-2" /> M</label></li>
-          <li><label><input type="checkbox" className="mr-2" /> L</label></li>
+          {["S", "M", "L"].map((size) => (
+            <li key={size}>
+              <label className="flex items-center space-x-2">
+                <input
+                  type="checkbox"
+                  className="form-checkbox h-5 w-5 text-blue-600 border-blue-600 rounded transition duration-200"
+                />
+                <span>{size}</span>
+              </label>
+            </li>
+          ))}
         </ul>
       </div>
 
@@ -56,9 +79,17 @@ const ProductFilters = ({ isSidebarOpen, toggleSidebar, priceRange, handlePriceC
       <div className="mb-4">
         <h3 className="font-medium">Color</h3>
         <ul className="space-y-2">
-          <li><label><input type="checkbox" className="mr-2" /> Black</label></li>
-          <li><label><input type="checkbox" className="mr-2" /> Blue</label></li>
-          <li><label><input type="checkbox" className="mr-2" /> White</label></li>
+          {["Black", "Blue", "White"].map((color) => (
+            <li key={color}>
+              <label className="flex items-center space-x-2">
+                <input
+                  type="checkbox"
+                  className="form-checkbox h-5 w-5 text-blue-600 border-blue-600 rounded transition duration-200"
+                />
+                <span>{color}</span>
+              </label>
+            </li>
+          ))}
         </ul>
       </div>
     </aside>

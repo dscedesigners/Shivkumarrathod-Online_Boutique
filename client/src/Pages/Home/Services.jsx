@@ -16,18 +16,22 @@ function Services() {
       <h2 className="text-3xl font-bold text-center text-black mb-8">Services</h2>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
         {images.map((image, index) => (
-          <div key={index} className="relative mb-8">
-            <img
-              src={image}
-              alt={`Men's service ${index + 1}`}
-              className="w-full h-[25rem] object-cover rounded"
-            />
+          <div key={index} className="group relative mb-8 overflow-hidden rounded">
+            <div className="group relative mb-8 overflow-hidden rounded">
+              <img
+                src={image}
+                alt={`Men's service ${index + 1}`}
+                className="w-full h-[25rem] object-cover transition-transform duration-300 ease-in-out transform group-hover:scale-110 group-hover:object-center"
+              />
+            </div>
             <p className="text-center text-blue-900 font-semibold mt-3">Men's</p>
           </div>
         ))}
       </div>
     </section>
   );
+  
+  
 }
 
 export default Services;
