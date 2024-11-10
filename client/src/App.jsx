@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Home from "./Pages/Home/Home";
-import AuthPage from "./Account/AuthPage"
+import AuthPage from "./Account/AuthPage";
 import AuthLoginTailor from './Pages/Home/AuthLoginTailor';
 import Registration from './Account/registration/Registration';
 import Dashboard from './Pages/TailorInterface/Dashboard';
@@ -12,7 +12,9 @@ import ServicesCustomization from './Pages/TailorInterface/ServicesCustomization
 import FAQs from './Pages/TailorInterface/FAQs';
 import EditProfile from './Pages/TailorInterface/EditProfile';
 import ProductList from './Pages/Products/Product';
+import ProductDetail from './Pages/Products/ProductDetail'; // New Product Detail page
 import Cart from './Pages/Cart/Cart';
+import ContactUs from './Pages/ContactUs'; // Import the Contact Us page
 
 function App() {
   return (
@@ -30,7 +32,9 @@ function App() {
         <Route path="/faqs" element={<FAQs />} />
         <Route path="/edit-profile" element={<EditProfile />} />
         <Route path="/products" element={<ProductList />} />
+        <Route path="/products/:productId" element={<ProductDetail />} /> {/* Product detail route */}
         <Route path="/cart" element={<Cart />} />
+        <Route path="/contact" element={<ContactUs />} /> {/* Contact Us page route */}
       </Routes>
     </>
   );
