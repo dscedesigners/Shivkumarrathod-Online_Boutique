@@ -1,9 +1,9 @@
 import React from 'react';
 import { FaCheckCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom'; // Import Link for navigation
-import person1 from '../../utiles/person1.jpg'; 
-import person2 from '../../utiles/person1.jpg';
-import person3 from '../../utiles/person1.jpg'; // Add the third image (you can use a different image)
+import person1 from '../../Utiles/person1.jpg'; 
+import person2 from '../../Utiles/person1.jpg';
+import person3 from '../../Utiles/person1.jpg'; // Add the third image (you can use a different image)
 
 const Showcase = () => {
   const handleScrollToTop = () => {

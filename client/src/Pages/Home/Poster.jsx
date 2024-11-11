@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
-import person1 from '../../utiles/person1.jpg'; // Import the image
-import ProductList from '../Products/Product';
+import person1 from '../../Utiles/person1.jpg'; // Import the image
 
 function Poster() {
   const handleScrollToTop = () => {
