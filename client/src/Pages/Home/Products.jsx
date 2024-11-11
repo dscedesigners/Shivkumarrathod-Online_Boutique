@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'; // Arrow icons
-
-// Sample products (replace with your actual image paths)
-import product1 from '../../utiles/person1.jpg';
-import product2 from '../../utiles/person2.jpg';
-import product3 from '../../utiles/person1.jpg';
-import product4 from '../../utiles/person2.jpg';
-import product5 from '../../utiles/person1.jpg';
-import product6 from '../../utiles/person2.jpg';
+import product1 from '../../Utiles/person1.jpg';
+import product2 from '../../Utiles/person2.jpg';
+import product3 from '../../Utiles/person1.jpg';
+import product4 from '../../Utiles/person2.jpg';
+import product5 from '../../Utiles/person1.jpg';
+import product6 from '../../Utiles/person2.jpg';
 
 const products = [
   { id: 1, image: product1 },
