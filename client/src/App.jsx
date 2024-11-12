@@ -12,9 +12,10 @@ import ServicesCustomization from './Pages/TailorInterface/ServicesCustomization
 import FAQs from './Pages/TailorInterface/FAQs';
 import EditProfile from './Pages/TailorInterface/EditProfile';
 import ProductList from './Pages/Products/Product';
-import ProductDetail from './Pages/Products/ProductDetail'; // New Product Detail page
+import ProductDetail from './Pages/Products/ProductDetail';
 import Cart from './Pages/Cart/Cart';
-import ContactUs from './Pages/ContactUs'; // Import the Contact Us page
+import ContactUs from './Pages/ContactUs';
+import ProfilePage from './Pages/Profile/ProfilePage'; // Import the Profile page
 
 function App() {
   return (
@@ -32,9 +33,10 @@ function App() {
         <Route path="/faqs" element={<FAQs />} />
         <Route path="/edit-profile" element={<EditProfile />} />
         <Route path="/products" element={<ProductList />} />
-        <Route path="/products/:productId" element={<ProductDetail />} /> {/* Product detail route */}
+        <Route path="/products/:productId" element={<ProductDetail />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/contact" element={<ContactUs />} /> {/* Contact Us page route */}
+        <Route path="/contact" element={<ContactUs />} />
+        <Route path="/profilepage" element={<ProfilePage />} /> {/* Profile page route */}
       </Routes>
     </>
   );
