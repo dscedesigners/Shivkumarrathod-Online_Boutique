@@ -1,12 +1,12 @@
 import React from 'react';
-import person1 from '../../utiles/person1.jpg';
-import person2 from '../../utiles/person2.jpg';
-import person3 from '../../utiles/person1.jpg';
-import person4 from '../../utiles/person2.jpg';
-import person5 from '../../utiles/person1.jpg';
-import person6 from '../../utiles/person2.jpg';
-import person7 from '../../utiles/person1.jpg';
-import person8 from '../../utiles/person2.jpg';
+import person1 from '../../Utiles/person1.jpg';
+import person2 from '../../Utiles/person2.jpg';
+import person3 from '../../Utiles/person1.jpg';
+import person4 from '../../Utiles/person2.jpg';
+import person5 from '../../Utiles/person1.jpg';
+import person6 from '../../Utiles/person2.jpg';
+import person7 from '../../Utiles/person1.jpg';
+import person8 from '../../Utiles/person2.jpg';
 
 function Services() {
   const images = [person1, person2, person3, person4, person5, person6, person7, person8];

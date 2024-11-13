@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FiShoppingCart } from "react-icons/fi";
+import { FaChevronLeft } from "react-icons/fa";  // Importing the go back icon
 
 const ProductDetail = () => {
   const location = useLocation();
@@ -57,12 +58,20 @@ const ProductDetail = () => {
   return (
     <div className="p-4 flex justify-center items-center bg-gray-100 min-h-screen">
       <div className="bg-white shadow-lg rounded-lg w-full max-w-4xl p-6">
+        {/* Go Back Button */}
+        <button
+          onClick={() => navigate("/products")}
+          className="flex items-center text-[#2518BD] mb-6 hover:underline"
+        >
+          <FaChevronLeft size={20} className="mr-2" /> Go Back
+        </button>
+
         <div className="flex flex-col lg:flex-row items-center space-y-6 lg:space-y-0 lg:space-x-8">
           <div className="w-full lg:w-1/2">
             <img
               src={product.imageUrl}
               alt={product.name}
-              className="w-full h-auto object-cover rounded-lg mb-4"
+              className="w-full h-[400px] object-cover rounded-lg mb-4" // Fixed height and object-fit
             />
           </div>
 
