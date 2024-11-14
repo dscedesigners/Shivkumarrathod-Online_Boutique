@@ -15,7 +15,7 @@ const SignUpPage = () => {
     e.preventDefault(); // Prevent the default form submission
     // Set a state or use a cookie to track if the user is logged in
     // After the submission, navigate to home
-    navigate('/'); // Redirect to the home page
+    navigate('/profilepage'); // Redirect to the home page
   };
 
   return (
