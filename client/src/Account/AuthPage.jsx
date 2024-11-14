@@ -4,18 +4,14 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from 'react-router-dom';
 import { FaChevronLeft } from "react-icons/fa";
 
-const SignUpPage = () => {
+const AuthPage = () => {
   const [isSignUp, setIsSignUp] = useState(true); // Track whether it's Sign Up or Sign In
   const navigate = useNavigate(); // Hook for navigation
-
-  const toggleForm = () => setIsSignUp(prev => !prev); // Toggle between Sign In and Sign Up
 
   // Form submission handler
   const handleSubmit = (e) => {
     e.preventDefault(); // Prevent the default form submission
-    // Set a state or use a cookie to track if the user is logged in
-    // After the submission, navigate to home
-    navigate('/profilepage'); // Redirect to the home page
+    navigate('/profilepage'); // Redirect to the profile page
   };
 
   return (
@@ -40,15 +36,6 @@ const SignUpPage = () => {
             <h1 className="w-[437px] text-3xl font-bold">
               {isSignUp ? "Create Account" : "Sign In to get Started"}
             </h1>
-          </div>
-
-          <div
-            className={`w-[54px] mb-2 h-[27px] bg-[#2518BD] rounded-full flex items-end cursor-pointer transition-colors duration-300 ${isSignUp ? 'bg-[#2518BD]' : 'bg-[#B5B1FF]'}`}
-            onClick={toggleForm}
-          >
-            <div
-              className={`w-[27px] h-[27px] bg-white rounded-full border-[#2518BD] border-x-2 border-y-2 transition-transform duration-300 ${isSignUp ? 'translate-x-[27px]' : 'translate-x-0'}`}
-            ></div>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -130,10 +117,22 @@ const SignUpPage = () => {
             </div>
             <h1 className="px-2 font-semibold">Continue With Google</h1>
           </button>
+
+          <div className="mt-4 text-left">
+            <p>
+              {isSignUp ? "Already have an account? " : "Don't have an account? "}
+              <button
+                className="text-[#2518BD] font-semibold"
+                onClick={() => setIsSignUp(prev => !prev)}
+              >
+                {isSignUp ? "Sign In" : "Sign Up"}
+              </button>
+            </p>
+          </div>
         </div>
       </div>
     </>
   );
 };
 
-export default SignUpPage;
+export default AuthPage;

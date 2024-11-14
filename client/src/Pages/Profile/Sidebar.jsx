@@ -9,7 +9,7 @@ const Sidebar = ({ setActiveSection, handleLogout }) => {
   };
 
   return (
-    <div className="w-64 bg-blue-800 text-white p-6 space-y-6 fixed top-0 left-0 bottom-0">
+    <div className="w-64 bg-blue-500 text-white p-6 space-y-6 fixed top-0 left-0 bottom-0">
       <h2 className="text-2xl font-semibold mb-6">My Profile</h2>
       <ul className="space-y-4">
         <li>
