@@ -13,17 +13,23 @@ const ProductCard = ({ product }) => {
   };
 
   return (
-    <Link to={`/products/${product.id}`} state={{ product }} className="w-full"> {/* Passing product as state */}
-      <div className="p-4 flex flex-col items-center bg-white shadow rounded-lg">
+    <Link to={`/products/${product.id}`} state={{ product }} className="w-full">
+      <div className="p-4 flex flex-col items-center bg-white shadow rounded-lg min-h-[380px]">
+        {/* Image */}
         <img
-          src={product.imageUrl}
+          src={product.imageUrl[0]}
           alt={product.name}
-          className="w-[222px] h-[237px] object-cover mb-2 rounded-xl"
+          className="w-full h-[200px] object-cover mb-2 rounded-xl"
         />
-        <h3 className="text-sm font-semibold">{product.name}</h3>
-        <p className="text-xs text-gray-500 mb-2">{product.description}</p>
-        <div className="flex justify-around items-center w-full mt-2">
-          <p className="font-semibold">$ {product.price}</p>
+        <h3 className="text-sm font-semibold text-center">{product.name}</h3>
+        <p className="text-xs text-gray-500 mb-2 text-center">{product.description}</p>
+
+        {/* Content that will expand */}
+        <div className="flex-grow" />
+
+        {/* Price and Cart section at the bottom */}
+        <div className="flex justify-between items-center w-full mt-auto">
+          <p className="font-semibold text-[#2518BD]">$ {product.price}</p>
           
           {count === 0 ? (
             <button

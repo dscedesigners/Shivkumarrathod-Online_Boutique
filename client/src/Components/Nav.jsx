@@ -70,31 +70,13 @@ const Nav = () => {
         </Link>
 
         {/* Login/SignUp or Profile Icon */}
-        {!isLoggedIn ? (
+        
           <button
             onClick={handleLogin}
             className="px-4 py-1 rounded-full bg-blue-800 text-white font-semibold hover:bg-blue-900"
           >
             <Link to="/account">Sign Up</Link>
           </button>
-        ) : (
-          <div className="relative">
-            <FaUserCircle
-              className="text-2xl cursor-pointer text-blue-800"
-              onClick={() => setShowProfileMenu((prev) => !prev)}
-            />
-            {showProfileMenu && (
-              <div className="absolute right-0 mt-2 w-48 bg-white border rounded-md shadow-lg">
-                <button
-                  className="block px-4 py-2 text-gray-800 hover:bg-gray-100 w-full text-left"
-                  onClick={handleLogout}
-                >
-                  Logout
-                </button>
-              </div>
-            )}
-          </div>
-        )}
       </div>
     </nav>
   );
