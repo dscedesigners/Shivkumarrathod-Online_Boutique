@@ -11,7 +11,7 @@ const Nav = () => {
   // Check if the screen is mobile-sized
   useEffect(() => {
     const checkIfMobile = () => {
-      setIsMobile(window.innerWidth <= 768); // Adjust for mobile view
+      setIsMobile(window.innerWidth <= 1000); // Adjust for mobile view
     };
 
     checkIfMobile(); // Initial check
