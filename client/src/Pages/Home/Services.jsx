@@ -12,26 +12,24 @@ function Services() {
   const images = [person1, person2, person3, person4, person5, person6, person7, person8];
 
   return (
-    <section className="p-10 bg-gradient-to-b from-white to-blue-200 w-full">
-      <h2 className="text-3xl font-bold text-center text-black mb-8">Services</h2>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+    <section className="p-6 sm:p-10 bg-gradient-to-b from-white to-blue-200 w-full">
+      <h2 className="text-3xl font-bold text-center text-black mb-8">Top Selling</h2>
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
         {images.map((image, index) => (
-          <div key={index} className="group relative mb-8 overflow-hidden rounded">
-            <div className="group relative mb-8 overflow-hidden rounded">
+          <div key={index} className="group relative overflow-hidden rounded">
+            <div className="relative overflow-hidden rounded">
               <img
                 src={image}
                 alt={`Men's service ${index + 1}`}
-                className="w-full h-[25rem] object-cover transition-transform duration-300 ease-in-out transform group-hover:scale-110 group-hover:object-center"
+                className="w-full h-40 sm:h-64 md:h-[25rem] object-cover transition-transform duration-300 ease-in-out transform group-hover:scale-110"
               />
             </div>
-            <p className="text-center text-blue-900 font-semibold mt-3">Men's</p>
+            <p className="text-center text-blue-900 font-semibold">Men's</p>
           </div>
         ))}
       </div>
     </section>
   );
-  
-  
 }
 
 export default Services;

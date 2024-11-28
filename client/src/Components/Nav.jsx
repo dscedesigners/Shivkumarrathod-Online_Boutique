@@ -1,84 +1,121 @@
-import React, { useState } from "react";
-import { FaSearch, FaShoppingCart, FaUserCircle } from "react-icons/fa";
-import { Link, useLocation } from "react-router-dom";
-import person1 from '../Utiles/AuthImage.jpg';
+import React, { useState, useEffect } from "react";
+import { FaShoppingCart, FaSearch, FaBars } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import Sidebar from "./Sidebar"; // Static Sidebar Component
 
 const Nav = () => {
-  const location = useLocation();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [showProfileMenu, setShowProfileMenu] = useState(false);
+  const [sidebarVisible, setSidebarVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [searchVisible, setSearchVisible] = useState(false);
 
-  const isActive = (path) => location.pathname === path;
+  // Check if the screen is mobile-sized
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth <= 768); // Adjust for mobile view
+    };
 
-  const handleLogin = () => {
-    // Simulate successful login
-    setIsLoggedIn(true);
-    setShowProfileMenu(false); // Hide menu on login
+    checkIfMobile(); // Initial check
+    window.addEventListener("resize", checkIfMobile); // Event listener for resizing
+
+    return () => {
+      window.removeEventListener("resize", checkIfMobile); // Cleanup listener
+    };
+  }, []);
+
+  // Close Sidebar when clicked outside
+  useEffect(() => {
+    if (sidebarVisible) {
+      const handleClickOutside = (e) => {
+        if (!e.target.closest(".sidebar") && !e.target.closest(".hamburger")) {
+          setSidebarVisible(false);
+        }
+      };
+      document.addEventListener("click", handleClickOutside);
+
+      return () => {
+        document.removeEventListener("click", handleClickOutside);
+      };
+    }
+  }, [sidebarVisible]);
+
+  const toggleSidebar = () => {
+    setSidebarVisible(!sidebarVisible);
   };
 
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-    setShowProfileMenu(false); // Hide menu on logout
+  const toggleSearch = () => {
+    setSearchVisible(!searchVisible);
   };
 
   return (
-    <nav className="flex justify-between items-center py-4 px-8 bg-white text-gray-800 w-full border-b border-gray-200">
-      {/* Logo Section */}
-      <div className="flex items-center space-x-2 text-2xl font-bold text-blue-800">
-        <span className="rounded-full p-2 bg-white">
-          <img src={person1} alt="logo" className="h-8 w-8 rounded-full" />
-        </span>
-        <span>StarFashion</span>
-      </div>
+    <>
+      {/* Navbar */}
+      <nav className="flex items-center justify-between bg-white py-4 px-6 border-b border-gray-200">
+        {/* Hamburger Icon (Only on mobile) */}
+        {isMobile && (
+          <div className="md:hidden">
+            <button onClick={toggleSidebar} className="text-2xl hamburger">
+              <FaBars />
+            </button>
+          </div>
+        )}
 
-      {/* Navigation Links */}
-      <ul className="flex space-x-8 text-lg">
-        {["Home", "Products", "Contact"].map((item) => (
-          <li
-            key={item}
-            className={`hover:text-blue-900 ${
-              isActive(item === "Home" ? "/" : `/${item.toLowerCase()}`)
-                ? "text-blue-900 border-b-2 border-blue-900 font-semibold"
-                : "text-blue-800"
-            }`}
+        {/* My Profile Link in Navbar */}
+        <div className="text-2xl font-bold text-blue-800">
+          <Link to="/">StarFashion</Link>
+        </div>
+
+        {/* Navbar Links (Visible in PC view) */}
+        {!isMobile && (
+          <div className="flex space-x-6">
+            <Link to="/" className="hover:underline">Home</Link>
+            <Link to="/products" className="hover:underline">Products</Link>
+            <Link to="/contact-us" className="hover:underline">Contact Us</Link>
+          </div>
+        )}
+
+        {/* Right Section: Search Bar, Cart, Sign Up Button */}
+        <div className="flex items-center space-x-6">
+          {/* Search Bar (Visible in PC view) */}
+          {!isMobile && (
+            <div className="relative flex items-center">
+              <input
+                type="text"
+                placeholder="Search products..."
+                className="w-96 p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <FaSearch className="absolute top-2 right-2 text-gray-500" />
+            </div>
+          )}
+
+          {/* Cart Icon */}
+          <Link to="/cart">
+            <FaShoppingCart className="text-2xl text-gray-800" />
+          </Link>
+
+          {/* Sign Up Button (Visible in PC and Mobile) */}
+          <Link
+            to="/account"
+            className="px-4 py-1 rounded-full bg-blue-800 text-white font-semibold hover:bg-blue-900"
           >
-            <Link
-              to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-              className="pb-2 transition-all"
-            >
-              {item}
-            </Link>
-          </li>
-        ))}
-      </ul>
+            Sign Up
+          </Link>
+        </div>
+      </nav>
 
-      {/* Search, Cart, and Auth Options */}
-      <div className="flex items-center space-x-6">
-        {/* Search Box */}
-        <div className="flex items-center border-b border-gray-700">
+      {/* Sidebar (Visible only on mobile) */}
+      {sidebarVisible && <Sidebar closeSidebar={toggleSidebar} />}
+
+      {/* Mobile View Search Bar */}
+      {isMobile && searchVisible && (
+        <div className="absolute top-16 left-1/2 transform -translate-x-1/2 bg-white w-80 py-2 border border-gray-300 rounded-md shadow-lg">
           <input
             type="text"
             placeholder="Search"
-            className="outline-none bg-transparent placeholder-gray-700"
+            className="outline-none w-full p-2"
           />
-          <FaSearch className="text-gray-600 ml-2" />
         </div>
-
-        {/* Shopping Cart Link */}
-        <Link to="/cart">
-          <FaShoppingCart className="text-2xl text-gray-800" />
-        </Link>
-
-        {/* Login/SignUp or Profile Icon */}
-        
-          <button
-            onClick={handleLogin}
-            className="px-4 py-1 rounded-full bg-blue-800 text-white font-semibold hover:bg-blue-900"
-          >
-            <Link to="/account">Sign Up</Link>
-          </button>
-      </div>
-    </nav>
+      )}
+    </>
   );
 };
 

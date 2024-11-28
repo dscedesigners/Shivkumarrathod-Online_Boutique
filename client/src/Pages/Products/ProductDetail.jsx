@@ -205,35 +205,36 @@ const ProductDetail = () => {
           </div>
         </div>
 
-        {/* More Suggestions Section */}
+       {/* More Suggestions Section */}
 <div className="mt-12">
   <h3 className="text-xl font-semibold text-gray-800 mb-4">More Suggestions</h3>
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-    {products.map((prod) => (
-      <div
-        key={prod.id}
-        className="border p-4 rounded-lg shadow-lg max-w-xs flex flex-col"
-      >
-        <img
-          src={prod.imageUrl[0] || "https://via.placeholder.com/150"}
-          alt={prod.name}
-          className="w-full h-[150px] object-cover rounded-lg mb-4"
-        />
-        <h4 className="text-lg font-semibold text-gray-800 mb-2">{prod.name}</h4>
-        <p className="text-lg text-[#2518BD] mb-2">$ {prod.price}</p>
-
-        {/* Add to Cart Button aligned at the bottom */}
-        <button
-          onClick={() => navigate(`/product/${prod.id}`, { state: { product: prod } })}
-          className="bg-[#2518BD] text-white p-2 rounded-lg mt-auto"
+  <div className="overflow-x-auto">
+    <div className="flex space-x-4 min-w-max">
+      {products.map((prod) => (
+        <div
+          key={prod.id}
+          className="border p-4 rounded-lg shadow-lg max-w-xs flex flex-col"
         >
-          Add to Cart
-        </button>
-      </div>
-    ))}
+          <img
+            src={prod.imageUrl[0] || "https://via.placeholder.com/150"}
+            alt={prod.name}
+            className="w-full h-[150px] object-cover rounded-lg mb-4"
+          />
+          <h4 className="text-lg font-semibold text-gray-800 mb-2">{prod.name}</h4>
+          <p className="text-lg text-[#2518BD] mb-2">$ {prod.price}</p>
+
+          {/* Add to Cart Button aligned at the bottom */}
+          <button
+            onClick={() => navigate(`/product/${prod.id}`, { state: { product: prod } })}
+            className="bg-[#2518BD] text-white p-2 rounded-lg mt-auto"
+          >
+            Add to Cart
+          </button>
+        </div>
+      ))}
+    </div>
   </div>
 </div>
-
 
         {/* Reviews Section */}
         <div className="mt-8">
