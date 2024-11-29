@@ -2,8 +2,7 @@ import React from 'react';
 import { FaCheckCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom'; // Import Link for navigation
 import person1 from '../../Utiles/person1.jpg'; 
-import person2 from '../../Utiles/person1.jpg';
-import person3 from '../../Utiles/person1.jpg'; // Add the third image (you can use a different image)
+import person2 from '../../Utiles/person1.jpg'; // Using the same image for desktop view
 
 const Showcase = () => {
   const handleScrollToTop = () => {
@@ -11,12 +10,12 @@ const Showcase = () => {
   };
 
   return (
-    <div className="bg-[linear-gradient(114.91deg,_#BEE2EF_7.73%,_#73C1DE_103.62%)] text-white p-8" style={{ height: '750px' }}>
-      <div className="container mx-auto px-10 flex justify-between items-start space-x-10 relative">
+    <div className="bg-[linear-gradient(114.91deg,_#BEE2EF_7.73%,_#73C1DE_103.62%)] text-white p-8" style={{ height: '650px' }}>
+      <div className="container mx-auto px-6 sm:px-10 flex flex-col lg:flex-row justify-between items-center space-y-10 lg:space-y-0 lg:space-x-10 relative">
         
         {/* Text Section */}
-        <div className="max-w-xl space-y-6">
-          <div className="bg-sky-100 rounded-lg shadow-md p-4 inline-flex space-x-4 text-blue-500">
+        <div className="max-w-xl space-y-6 text-center lg:text-left">
+          <div className="bg-sky-100 rounded-lg shadow-md p-4 inline-flex space-x-4 text-blue-500 mx-auto lg:mx-0">
             <div className="flex items-center space-x-1">
               <FaCheckCircle className="text-lg" />
               <span className="text-gray-600">Free Register</span>
@@ -31,7 +30,7 @@ const Showcase = () => {
             </div>
           </div>
 
-          <h1 className="text-4xl font-bold text-black leading-relaxed">
+          <h1 className="text-3xl sm:text-4xl font-bold text-black leading-relaxed">
             Getting the best <span className="text-blue-600">and</span><br />
             latest style has never<br />
             <span className="text-blue-600">been easier!</span>
@@ -49,9 +48,10 @@ const Showcase = () => {
         </div>
 
         {/* Images Section */}
-        <div className="flex space-x-4">
-          {/* First Image */}
+        <div className="flex flex-col sm:flex-row space-x-0 sm:space-x-4 justify-center items-center sm:justify-start">
+          {/* First Image (only for large screens) */}
           <div
+            className="hidden lg:block"
             style={{
               width: '300px',
               height: '570px',
@@ -59,7 +59,6 @@ const Showcase = () => {
               marginLeft: '-30px', // Adjusted to move it slightly to the left
               overflow: 'hidden',
             }}
-            className="relative"
           >
             <img
               src={person1}
@@ -68,15 +67,15 @@ const Showcase = () => {
             />
           </div>
 
-          {/* Second Image */}
+          {/* Second Image (only for large screens) */}
           <div
+            className="hidden lg:block"
             style={{
               width: '269px',
               height: '483px',
               borderRadius: '131px',
               overflow: 'hidden',
             }}
-            className="relative"
           >
             <img
               src={person2}
@@ -84,37 +83,10 @@ const Showcase = () => {
               className="w-full h-full object-cover"
             />
           </div>
-        </div>
-      </div>
 
-      {/* Glass Effect Box Overlapping the Large Image */}
-      <div className="absolute top-[calc(100%-150px)] right-0 flex justify-center items-center w-[50%] z-10">
-        <div className="p-4 bg-white/20 backdrop-blur-lg rounded-lg w-full max-w-[350px]">
-          <div className="flex justify-between gap-4">
-            {/* Small Image 1 */}
-            <div className="flex justify-center items-center">
-              <img
-                src={person1}
-                alt="Fashion 1"
-                className="w-16 h-16 object-cover rounded-lg shadow-lg"
-              />
-            </div>
-            {/* Small Image 2 */}
-            <div className="flex justify-center items-center">
-              <img
-                src={person2}
-                alt="Fashion 2"
-                className="w-16 h-16 object-cover rounded-lg shadow-lg"
-              />
-            </div>
-            {/* Small Image 3 */}
-            <div className="flex justify-center items-center">
-              <img
-                src={person3}
-                alt="Fashion 3"
-                className="w-16 h-16 object-cover rounded-lg shadow-lg"
-              />
-            </div>
+          {/* Mobile Image (hidden on large screens) */}
+          <div className="lg:hidden mt-10 w-full flex justify-center">
+            {/* Removed the image completely for mobile view */}
           </div>
         </div>
       </div>

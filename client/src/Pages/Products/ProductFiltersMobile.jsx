@@ -7,19 +7,31 @@ const ProductFiltersMobile = ({ priceRange, handlePriceChange }) => {
     setIsFiltersVisible(!isFiltersVisible);
   };
 
+  const closeFilters = () => {
+    setIsFiltersVisible(false);
+  };
+
   return (
     <div>
-      {/* Mobile Filters Button */}
+      {/* Filters Button */}
       <button
         onClick={toggleFilters}
         className="w-full py-3 bg-blue-600 text-white text-lg font-semibold rounded-md shadow-lg mb-4"
       >
-        Apply Filters
+        Filters
       </button>
 
-      {/* Filters Sidebar */}
+      {/* Filters Dropdown */}
       {isFiltersVisible && (
-        <div className="fixed top-0 left-0 w-full h-full bg-white p-6 space-y-6 shadow-lg z-50 md:hidden">
+        <div className="absolute top-0 left-0 w-full h-full bg-white p-6 space-y-6 shadow-lg z-50 md:hidden overflow-y-auto max-h-[90vh]">
+          {/* Close Button (X) */}
+          <button
+            onClick={closeFilters}
+            className="absolute top-4 right-4 text-2xl font-semibold text-gray-700"
+          >
+            &times;
+          </button>
+
           {/* Category Filter */}
           <div className="space-y-3">
             <h3 className="font-semibold text-lg text-gray-800">Category</h3>

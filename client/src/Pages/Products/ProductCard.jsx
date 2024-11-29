@@ -13,24 +13,30 @@ const ProductCard = ({ product }) => {
   };
 
   return (
-    <Link to={`/products/${product.id}`} state={{ product }} className="w-full">
-      <div className="p-4 flex flex-col items-center bg-white shadow rounded-lg min-h-[380px]">
+    <Link
+      to={`/products/${product.id}`}
+      state={{ product }}
+      className="w-full max-w-xs mx-auto"
+    >
+      <div className="p-4 flex flex-col items-center bg-white shadow-lg rounded-lg min-h-[380px]">
         {/* Image */}
         <img
           src={product.imageUrl[0]}
           alt={product.name}
-          className="w-full h-[200px] object-cover mb-2 rounded-xl"
+          className="w-full h-[200px] object-cover mb-4 rounded-xl"
         />
+        
         <h3 className="text-sm font-semibold text-center">{product.name}</h3>
-        <p className="text-xs text-gray-500 mb-2 text-center">{product.description}</p>
+        <p className="text-xs text-gray-500 mb-4 text-center">{product.description}</p>
 
         {/* Content that will expand */}
         <div className="flex-grow" />
 
         {/* Price and Cart section at the bottom */}
         <div className="flex justify-between items-center w-full mt-auto">
-          <p className="font-semibold text-[#2518BD]">$ {product.price}</p>
-          
+          <p className="font-semibold text-[#2518BD]">${product.price}</p>
+
+          {/* Conditional rendering for cart button */}
           {count === 0 ? (
             <button
               className="bg-[#2518BD] text-white p-3 rounded-full"
