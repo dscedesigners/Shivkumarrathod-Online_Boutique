@@ -2,13 +2,17 @@ import React, { useState, useEffect } from "react";
 import { FaShoppingCart, FaSearch, FaBars } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Sidebar from "./Sidebar"; // Static Sidebar Component
+import { FaUser } from "react-icons/fa";
 
-const Nav = () => {
+
+const Nav = ({data}) => {
   const [sidebarVisible, setSidebarVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [searchVisible, setSearchVisible] = useState(false);
 
   // Check if the screen is mobile-sized
+  console.log(data);
+  
   useEffect(() => {
     const checkIfMobile = () => {
       setIsMobile(window.innerWidth <= 1000); // Adjust for mobile view
@@ -93,12 +97,18 @@ const Nav = () => {
           </Link>
 
           {/* Sign Up Button (Visible in PC and Mobile) */}
-          <Link
+          {data?(<>
+            <Link to='/profilepage'>
+            <FaUser className="hover:cursor-pointer" size={25}/>
+            </Link>
+          </>):(<>
+            <Link
             to="/account"
             className="px-4 py-1 rounded-full bg-blue-800 text-white font-semibold hover:bg-blue-900"
-          >
-            Sign Up
-          </Link>
+            >
+              Sign Up
+            </Link>
+          </>)}
         </div>
       </nav>
 

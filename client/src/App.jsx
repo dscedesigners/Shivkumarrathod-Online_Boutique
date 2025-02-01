@@ -16,13 +16,14 @@ import ProductDetail from './Pages/Products/ProductDetail';
 import Cart from './Pages/Cart/Cart';
 import ContactUs from './Pages/ContactUs';
 import ProfilePage from './Pages/Profile/ProfilePage'; // Import the Profile page
+import LoginOTP from './Account/LoginOTP'
 
 function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/account" element={<AuthPage />} />
+        <Route path="/account" element={<LoginOTP />} /> 
         <Route path="/authlogintailor" element={<AuthLoginTailor />} />
         <Route path="/tailor-registration" element={<Registration />} />
         <Route path="/tailor-dashboard" element={<Dashboard />} />
@@ -37,6 +38,8 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/contact" element={<ContactUs />} />
         <Route path="/profilepage" element={<ProfilePage />} /> {/* Profile page route */}
+        {/* Profile page route */}
+        
       </Routes>
     </>
   );

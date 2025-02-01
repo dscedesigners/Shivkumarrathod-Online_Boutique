@@ -9,6 +9,7 @@ const ProfilePage = () => {
   const [activeSection, setActiveSection] = useState('profileInfo');
   const navigate = useNavigate();
 
+  
   const handleLogout = () => {
     // Clear authentication tokens, etc.
     navigate('/account'); // Redirect to login page after logout
