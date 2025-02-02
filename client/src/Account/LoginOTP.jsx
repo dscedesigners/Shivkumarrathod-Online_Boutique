@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { auth } from "../firebase.config";
 import { onAuthStateChanged, RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-
+import { setCredientials } from "../redux/feauters/authSlice";
 import {useCreateUserMutation} from '../redux/services/userSlice'
+import { useDispatch } from "react-redux";
 
 
 function Login() {
@@ -15,6 +16,8 @@ function Login() {
   const [timer, setTimer] = useState(0);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch()
+
 
   const [createUser] = useCreateUserMutation()
 
@@ -48,7 +51,7 @@ function Login() {
           navigate('/profilepage')
         }
       })
-    })
+  },[onAuthStateChanged])
 
   useEffect(() => {
     let interval;
@@ -93,6 +96,7 @@ function Login() {
           setMessage(`Phone number verified! Welcome ${res.user.phoneNumber}`);
           console.log(phoneNumber);
           const user = await createUser({phone:phoneNumber}).unwrap()
+          dispatch(setCredientials({...user}))
           console.log(user);
           navigate("/profilepage");
         })

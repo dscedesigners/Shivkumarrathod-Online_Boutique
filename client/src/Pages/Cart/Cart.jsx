@@ -1,44 +1,78 @@
-import React, { useState } from 'react';
-import { FaTrashAlt } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';  // Import useNavigate hook
-import person1 from '../../Utiles/person1.jpg';
-import person2 from '../../Utiles/person2.jpg';
-import person3 from '../../Utiles/person1.jpg';
+import React, { useEffect } from "react";
+import { FaTrashAlt } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { useGetCartItemsQuery, useRemoveProdFromCartMutation,useAddToCartOfUserMutation ,useRemoveFromCartUserMutation } from "../../redux/services/userSlice";
+import { useSelector } from "react-redux";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Cart = () => {
-  // Navigation hook
   const navigate = useNavigate();
+  const { userInfo } = useSelector((state) => state.auth);
 
-  // Initial cart items with quantity property
-  const initialItems = [
-    { id: 1, name: 'Checkered shirt', size: 'M', color: 'white', price: 99.99, image: person1, quantity: 1 },
-    { id: 2, name: 'Checkered shirt', size: 'M', color: 'white', price: 99.99, image: person2, quantity: 1 },
-    { id: 3, name: 'Checkered shirt', size: 'M', color: 'white', price: 100.00, image: person3, quantity: 1 },
-  ];
-
-  const [items, setItems] = useState(initialItems);
+  // Fetch cart items
+  const { data: cart, isLoading, error,refetch } = useGetCartItemsQuery({ userId: userInfo?.user?.id });
+  
+  useEffect(()=>{
+    refetch()
+  },[refetch])
+  const [addToCart] = useAddToCartOfUserMutation();
+  const [removeItem] = useRemoveFromCartUserMutation();
+  const [removeProdFromCart] = useRemoveProdFromCartMutation()
+  
+  if (isLoading) return <p className="text-center text-gray-600">Loading your cart...</p>;
+  if (error) return <p className="text-center text-red-500">Error loading cart.</p>;
+  if (!cart.cartItems.length) {
+    return (
+      <motion.div 
+        initial={{ opacity: 0, y: -10 }} 
+        animate={{ opacity: 1, y: 0 }} 
+        transition={{ duration: 0.5 }} 
+        className="flex flex-col items-center justify-center h-64 text-gray-500 text-lg font-medium"
+      >
+        <p className="text-xl font-semibold">Oops! Your cart is feeling a little empty. 🛒</p>
+        <p className="text-sm text-gray-400 mt-2">Let’s fix that—start adding your favorite items now!</p>
+        <motion.button 
+          whileHover={{ scale: 1.05 }} 
+          whileTap={{ scale: 0.95 }} 
+          onClick={() => navigate("/products")}
+          className="mt-4 px-5 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition"
+        >
+          Browse Products
+        </motion.button>
+      </motion.div>
+    );
+  }  
+  const items = cart?.cartItems || [];
 
   // Function to increase quantity
-  const increaseQuantity = (id) => {
-    setItems(items.map(item => 
-      item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-    ));
+  const increaseQuantity = async (id) => {
+    const res =   await addToCart({ user: userInfo.user.id, cartItems: [{ product: id, quantity:1 }] });
+    console.log(res);
+    refetch()
   };
 
-  // Function to decrease quantity
-  const decreaseQuantity = (id) => {
-    setItems(items.map(item => 
-      item.id === id && item.quantity > 1 ? { ...item, quantity: item.quantity - 1 } : item
-    ));
+  // Function to decrease quantity or remove if it's 1
+  const decreaseQuantity = async (id) => {
+      const res = await removeItem({ user: userInfo.user.id, product: id });
+      console.log(res);
+      refetch()
+     
+      
   };
 
-  // Function to remove item from the cart
-  const removeItem = (id) => {
-    setItems(items.filter(item => item.id !== id));
+  // Function to remove item
+  const handleRemoveItem = async (id) => {
+    try {
+      const res =  await removeProdFromCart({ user: userInfo.user.id, product: id });
+      refetch()
+      console.log(res);
+    } catch (error) {
+      console.log("While removing product from cart"+error);
+    }
   };
 
   // Calculate subtotal, discount, and total
-  const subTotal = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  const subTotal = items.reduce((acc, item) => acc + item.product.price * item.quantity, 0);
   const discount = subTotal * 0.2;
   const deliveryFee = 15.98;
   const total = subTotal - discount + deliveryFee;
@@ -46,52 +80,51 @@ const Cart = () => {
   return (
     <div className="p-8 max-w-3xl mx-auto font-sans">
       <header className="flex items-center justify-between mb-8">
-        {/* Go Back link using navigate */}
-        <span 
-          className="text-gray-500 text-sm cursor-pointer"
-          onClick={() => navigate('/')} // Navigate to Home page
-        >
+        <span className="text-gray-500 text-sm cursor-pointer" onClick={() => navigate("/")}>
           &lt; Go Back
         </span>
         <h1 className="text-2xl font-semibold">Your Cart</h1>
       </header>
 
       <div className="space-y-6">
-        {items.map((item) => (
-          <div key={item.id} className="flex items-center border-b pb-4">
-            <img src={item.image} alt={item.name} className="w-20 h-20 object-cover rounded-md mr-4" />
-            <div className="flex-1">
-              <p className="font-semibold">{item.name}</p>
-              <p className="text-gray-600 text-sm">Size: {item.size}</p>
-              <p className="text-gray-600 text-sm">Color: {item.color}</p>
-              <p className="font-semibold text-gray-800">Rs. {item.price.toFixed(2)}</p>
-            </div>
-            <div className="flex items-center space-x-2 mr-4">
-              <button
-                className="px-3 py-1 bg-gray-200 text-gray-700 rounded"
-                onClick={() => decreaseQuantity(item.id)}
-              >
-                -
+        <AnimatePresence>
+          {items.map((item) => (
+            <motion.div
+              key={item.product._id}
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 30 }}
+              transition={{ duration: 0.3 }}
+              className="flex items-center border-b pb-4"
+            >
+              <img src={item.product.images[0]} alt={item.product.name} className="w-20 h-20 object-cover rounded-md mr-4" />
+              <div className="flex-1">
+                <p className="font-semibold">{item.product.name}</p>
+                <p className="text-gray-600 text-sm">Size: {item.product.size || "M"}</p>
+                <p className="text-gray-600 text-sm">Color: {item.product.color || "Default"}</p>
+                <p className="font-semibold text-gray-800">Rs. {item.product.price.toFixed(2)}</p>
+              </div>
+              <div className="flex items-center space-x-2 mr-4">
+                <button className="px-3 py-1 bg-gray-200 text-gray-700 rounded" onClick={() => decreaseQuantity(item.product._id)}>
+                  -
+                </button>
+                <span className="text-lg font-medium">{item.quantity}</span>
+                <button className="px-3 py-1 bg-gray-200 text-gray-700 rounded" onClick={() => increaseQuantity(item.product._id)}>
+                  +
+                </button>
+              </div>
+              <button className="text-red-500 text-xl" onClick={() => handleRemoveItem(item.product._id)}>
+                <FaTrashAlt />
               </button>
-              <span className="text-lg font-medium">{item.quantity}</span>
-              <button
-                className="px-3 py-1 bg-gray-200 text-gray-700 rounded"
-                onClick={() => increaseQuantity(item.id)}
-              >
-                +
-              </button>
-            </div>
-            <button className="text-red-500 text-xl" onClick={() => removeItem(item.id)}>
-              <FaTrashAlt />
-            </button>
-          </div>
-        ))}
+            </motion.div>
+          ))}
+        </AnimatePresence>
       </div>
 
-      <div className="mt-10">
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }} className="mt-10">
         <h2 className="font-semibold text-lg mb-4">Order Summary</h2>
         <div className="flex justify-between py-2">
-          <span>Sub order</span>
+          <span>Subtotal</span>
           <span>Rs. {subTotal.toFixed(2)}</span>
         </div>
         <div className="flex justify-between py-2 text-green-600">
@@ -107,11 +140,15 @@ const Cart = () => {
           <span>Total</span>
           <span>Rs. {total.toFixed(2)}</span>
         </div>
-      </div>
+      </motion.div>
 
-      <button className="bg-blue-700 hover:bg-blue-800 text-white w-full py-3 rounded mt-6 font-medium">
+      <motion.button
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        className="bg-blue-700 hover:bg-blue-800 text-white w-full py-3 rounded mt-6 font-medium"
+      >
         Order All
-      </button>
+      </motion.button>
     </div>
   );
 };

@@ -1,23 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { FaShoppingCart, FaSearch, FaBars } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Sidebar from "./Sidebar"; // Static Sidebar Component
 import { FaUser } from "react-icons/fa";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../firebase.config";
+import {useGetCartItemsQuery} from '../redux/services/userSlice'
+import { useSelector } from "react-redux";
 
 
-const Nav = ({data}) => {
+const Nav = () => {
   const [sidebarVisible, setSidebarVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [searchVisible, setSearchVisible] = useState(false);
+  const [user,setUser] = useState('')
 
   // Check if the screen is mobile-sized
-  console.log(data);
+  const navigate = useNavigate()
+
   
   useEffect(() => {
     const checkIfMobile = () => {
       setIsMobile(window.innerWidth <= 1000); // Adjust for mobile view
-    };
-
+  };
     checkIfMobile(); // Initial check
     window.addEventListener("resize", checkIfMobile); // Event listener for resizing
 
@@ -26,6 +31,21 @@ const Nav = ({data}) => {
     };
   }, []);
 
+  useEffect(()=>{
+    onAuthStateChanged(auth,(user)=>{
+      if(user){
+        setUser(user)
+      }
+      else{
+        navigate('/account')
+      }
+    })
+  })
+
+  const {userInfo} = useSelector(state=>state.auth)
+
+  const {data:cart,refetch} = useGetCartItemsQuery({userId:userInfo.user.id})
+  
   // Close Sidebar when clicked outside
   useEffect(() => {
     if (sidebarVisible) {
@@ -92,12 +112,17 @@ const Nav = ({data}) => {
           )}
 
           {/* Cart Icon */}
-          <Link to="/cart">
+          <Link to="/cart" className="relative">
             <FaShoppingCart className="text-2xl text-gray-800" />
+            {cart?.cartItems?.length > 0 && (
+              <span className="absolute -top-2 -right-2 bg-green-600 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
+                {cart.cartItems.length}
+              </span>
+            )}
           </Link>
 
           {/* Sign Up Button (Visible in PC and Mobile) */}
-          {data?(<>
+          {user?(<>
             <Link to='/profilepage'>
             <FaUser className="hover:cursor-pointer" size={25}/>
             </Link>

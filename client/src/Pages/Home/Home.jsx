@@ -10,23 +10,8 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../../firebase.config';
 
 function Home() {
-  const [user,setUser] = useState('')
-
-  useEffect(()=>{
-    onAuthStateChanged(auth,(user)=>{
-      if(user){
-        setUser(user)
-        console.log(user);
-        
-      }
-      else{
-        navigate('/account')
-      }
-    })
-  })
   return (
     <div className="bg-gradient-to-b from-blue-100 to-blue-50">
-      <Nav data={user}/>
       <Showcase />
       <Products />
       <Services />

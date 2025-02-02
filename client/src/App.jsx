@@ -17,10 +17,12 @@ import Cart from './Pages/Cart/Cart';
 import ContactUs from './Pages/ContactUs';
 import ProfilePage from './Pages/Profile/ProfilePage'; // Import the Profile page
 import LoginOTP from './Account/LoginOTP'
+import Nav from './Components/Nav';
 
 function App() {
   return (
     <>
+      <Nav/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/account" element={<LoginOTP />} /> 
