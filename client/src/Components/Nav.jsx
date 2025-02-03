@@ -44,7 +44,7 @@ const Nav = () => {
 
   const {userInfo} = useSelector(state=>state.auth)
 
-  const {data:cart,refetch} = useGetCartItemsQuery({userId:userInfo.user.id})
+  const {data:cart,refetch} = useGetCartItemsQuery({userId:userInfo?.user?.id})
   
   // Close Sidebar when clicked outside
   useEffect(() => {
