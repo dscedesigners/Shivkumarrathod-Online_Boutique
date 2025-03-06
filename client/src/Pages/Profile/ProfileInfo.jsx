@@ -79,7 +79,7 @@ const ProfileInfo = () => {
             alt="Profile"
             className="w-32 h-32 rounded-full border border-gray-300"
           />
-          <h1>{User.phone}</h1>
+          <h1>{User?.phone}</h1>
           {isEditing && (
             <input
               type="file"
