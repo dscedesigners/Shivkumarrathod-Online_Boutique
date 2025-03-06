@@ -12,6 +12,7 @@ const ProfilePage = () => {
   
   const handleLogout = () => {
     // Clear authentication tokens, etc.
+    
     navigate('/account'); // Redirect to login page after logout
   };
 

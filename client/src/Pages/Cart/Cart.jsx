@@ -15,6 +15,7 @@ const Cart = () => {
   useEffect(()=>{
     refetch()
   },[refetch])
+  
   const [addToCart] = useAddToCartOfUserMutation();
   const [removeItem] = useRemoveFromCartUserMutation();
   const [removeProdFromCart] = useRemoveProdFromCartMutation()

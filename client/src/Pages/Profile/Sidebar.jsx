@@ -1,13 +1,33 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {onAuthStateChanged, signOut} from 'firebase/auth'
+import {auth} from '../../firebase.config'
+import { useSelector } from 'react-redux';
 
 const Sidebar = ({ setActiveSection, handleLogout }) => {
   const navigate = useNavigate();
-
+  const {userInfo} = useSelector(action =>action.auth)
+  console.log(userInfo);
+  
   const handleGoBack = () => {
     navigate(-1); // Navigate back to the previous page
   };
 
+  // useEffect(() => {
+  //  if (!userInfo) {
+  //   navigate('/account')
+  //  }
+  // }, [userInfo]);
+
+
+  handleLogout =async ()=>{
+    try {
+     await signOut(auth)
+     navigate('/account')
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <div className="w-64 bg-blue-500 text-white p-6 space-y-6 fixed top-0 left-0 bottom-0">
       <h2 className="text-2xl font-semibold mb-6">My Profile</h2>

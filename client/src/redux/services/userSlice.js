@@ -11,12 +11,12 @@ export const userApiSlice = apiSlice.injectEndpoints({
                 body:{phone}
             })
         }),
-        updateUser :builder.mutation({
-            query:(userId,data)=>({
-                url:`${userAPI}/update/${userId}`,
-                method:"PATCH",
-                body:data
-            })
+        updateUser: builder.mutation({
+            query: ({ userId, data }) => ({
+              url: `${userAPI}/update/${userId}`,
+              method: "PATCH",
+              body: data,
+            }),
         }),
         addToCartOfUser : builder.mutation({
             query: ({user, cartItems}) => ({
