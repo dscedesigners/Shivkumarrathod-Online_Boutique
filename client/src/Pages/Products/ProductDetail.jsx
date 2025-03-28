@@ -68,7 +68,7 @@ const ProductDetail = () => {
             {/* Product Details */}
             <div className="flex flex-col justify-between w-full lg:w-1/2">
               <h2 className="text-3xl font-semibold text-gray-800 mb-2">{product.name}</h2>
-              <p className="text-lg font-semibold text-gray-700 mb-4">$ {product.price}</p>
+              <p className="text-lg font-semibold text-gray-700 mb-4"> Rs.{product.price}</p>
               <p className="text-gray-600 mb-4">{product.description || "No description available"}</p>
 
               <div className="mt-4 flex space-x-4">
@@ -145,7 +145,7 @@ const ProductDetail = () => {
                   className="w-full h-[200px] object-cover rounded-lg mb-4"
                 />
                 <h4 className="text-lg font-semibold text-gray-800 mb-2">{prod.name}</h4>
-                <p className="text-lg text-[#2518BD] mb-2">$ {prod.price}</p>
+                <p className="text-lg text-[#2518BD] mb-2">Rs. {prod.price}</p>
                 <button
                   onClick={() => navigate(`/product/${prod.id}`)}
                   className="bg-[#2518BD] text-white p-2 rounded-lg mt-auto transition-all duration-300 ease-in-out transform hover:scale-105"

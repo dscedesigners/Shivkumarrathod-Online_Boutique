@@ -59,7 +59,7 @@ const ProductFiltersMobile = ({ priceRange, handlePriceChange }) => {
               onChange={handlePriceChange}
               className="w-full h-2 bg-gray-200 rounded-full"
             />
-            <p className="text-sm text-gray-600">Up to: ${priceRange}</p>
+            <p className="text-sm text-gray-600">Up to: Rs.{priceRange}</p>
           </div>
 
           {/* Brand Filter */}

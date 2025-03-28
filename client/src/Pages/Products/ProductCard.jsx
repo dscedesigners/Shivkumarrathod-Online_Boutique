@@ -66,7 +66,7 @@ const ProductCard = ({ product }) => {
 
         {/* Price and Cart section at the bottom */}
         <div className="flex justify-between items-center w-full mt-auto">
-          <p className="font-semibold text-[#2518BD]">${product.price.toFixed(2)}</p>
+          <p className="font-semibold text-[#2518BD]">Rs.{product.price.toFixed(2)}</p>
 
           {/* Cart Button - Different for "ComfortElite" */}
           {count === 0 ? (
