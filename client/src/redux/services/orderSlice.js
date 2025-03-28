@@ -1,16 +1,20 @@
 import { apiSlice } from "./apiSlice";
-const product = "/api/order"
+const Order = "/api/order"
 
 export const orderSlice = apiSlice.injectEndpoints({
     endpoints: (builder)=>({
         createOrder: builder.mutation({
             query: ({ user, shippingAddress, paymentMethod }) => ({
-                url:`${product}/neworder`,
+                url:`${Order}/neworder`,
                 method:"POST",
                 body:{ user, shippingAddress, paymentMethod }
             }),
-        })
+        }),
+        getOrderByUserId: builder.query({
+            query: (userId) => `${Order}/getallorders/${userId}`,
+            providesTags: ["Orders"],
+        }),
     })
 })
 
-export const {useCreateOrderMutation} = orderSlice
+export const {useCreateOrderMutation,useGetOrderByUserIdQuery} = orderSlice

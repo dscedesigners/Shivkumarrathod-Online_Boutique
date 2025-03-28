@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useGetCartItemsQuery, useRemoveProdFromCartMutation,useAddToCartOfUserMutation ,useRemoveFromCartUserMutation } from "../../redux/services/userSlice";
 import { useSelector } from "react-redux";
 import { motion, AnimatePresence } from "framer-motion";
-
+import {useCreateOrderMutation} from '../../redux/services/orderSlice'
 const Cart = () => {
   const navigate = useNavigate();
   const { userInfo } = useSelector((state) => state.auth);
@@ -19,9 +19,10 @@ const Cart = () => {
   const [addToCart] = useAddToCartOfUserMutation();
   const [removeItem] = useRemoveFromCartUserMutation();
   const [removeProdFromCart] = useRemoveProdFromCartMutation()
-  
+  const [createOrder] = useCreateOrderMutation()
+
   if (isLoading) return <p className="text-center text-gray-600">Loading your cart...</p>;
-  if (error) return <p className="text-center text-red-500">Error loading cart.</p>;
+  if (error) return <p className="text-center text-green-500">Loading cart items.</p>;
   if (!cart.cartItems.length) {
     return (
       <motion.div 
@@ -78,6 +79,34 @@ const Cart = () => {
   const deliveryFee = 15.98;
   const total = subTotal - discount + deliveryFee;
 
+
+  const handleCreateOrder = async () => {
+    if (!userInfo?.user?.id) {
+      alert("You need to log in to place an order.");
+      navigate("/login");
+      return;
+    }
+  
+    try {
+      const shippingAddress = {
+        fullName: "John Doe", // Ideally, get this from user profile or form
+        street: "123 Main Street",
+        city: "New York",
+        state: "NY",
+        zipCode: "10001",
+        country: "USA",
+      }
+      const response = await createOrder({user:userInfo?.user?.id,shippingAddress,paymentMethod:"COD"}).unwrap()
+      console.log(response);
+      refetch()
+      alert("Order placed successfully!");
+      navigate("/profilepage"); // Redirect to orders page
+    } catch (error) {
+      console.error("Error placing order:", error);
+      alert(error.message);
+    }
+  };
+  
   return (
     <div className="p-8 max-w-3xl mx-auto font-sans">
       <header className="flex items-center justify-between mb-8">
@@ -147,6 +176,7 @@ const Cart = () => {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         className="bg-blue-700 hover:bg-blue-800 text-white w-full py-3 rounded mt-6 font-medium"
+        onClick={handleCreateOrder}
       >
         Order All
       </motion.button>
