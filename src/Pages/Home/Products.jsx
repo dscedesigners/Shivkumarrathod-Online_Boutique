@@ -40,7 +40,7 @@ function Products() {
   return (
     <section id="products" className="p-8 sm:p-16 bg-blue-50">
       <h2 className="text-2xl sm:text-4xl font-bold text-center text-black mb-6 sm:mb-8">
-        Men's Collection
+        Women's Collection
       </h2>
 
       <div className="relative mt-6">

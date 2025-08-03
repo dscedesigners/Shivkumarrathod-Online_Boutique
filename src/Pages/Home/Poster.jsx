@@ -8,7 +8,7 @@ function Poster() {
   };
 
   return (
-    <div className="flex flex-col sm:flex-row items-center sm:items-center justify-between rounded-xl bg-blue-800 text-white p-6 sm:p-8 mx-4 mt-20 mb-20">
+    <div className="flex flex-col sm:flex-row items-center sm:items-center justify-between rounded-xl bg-pink-600 text-white p-6 sm:p-8 mx-4 mt-20 mb-20">
       <div className="flex items-center mb-6 sm:mb-0">
         <img
           src={person1} // Use the imported image

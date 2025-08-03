@@ -24,7 +24,7 @@ function Services() {
                 className="w-full h-40 sm:h-64 md:h-[25rem] object-cover transition-transform duration-300 ease-in-out transform group-hover:scale-110"
               />
             </div>
-            <p className="text-center text-blue-900 font-semibold">Men's</p>
+            <p className="text-center text-blue-900 font-semibold">Women's</p>
           </div>
         ))}
       </div>

@@ -8,7 +8,7 @@ function WhatWeDo() {
       <h2 className="text-3xl font-bold text-center text-black mb-8">What We Do</h2>
       
       {/* Unified container with one box */}
-      <div className="bg-[linear-gradient(94.1deg,_#F4F4F4_-39.59%,_#91DEFB_99.19%)] p-6 rounded-lg shadow-lg">
+      <div className="bg-[linear-gradient(94.1deg,_#F4F4F4_-39.59%,_#F472B6_99.19%)] p-6 rounded-lg shadow-lg">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Individual items now share the same background without their own box styles */}
           <div className="flex items-center p-6">
